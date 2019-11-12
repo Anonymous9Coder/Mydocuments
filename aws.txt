@@ -1,0 +1,25 @@
+AWS Machines 
+
+
+HOST
+ec2-13-127-202-10.ap-south-1.compute.amazonaws.com
+172.31.11.236
+
+AWS Jenkins Password : Connor23
+MySQL Passwd : Connor84@
+
+Public IP : 13.232.37.162
+
+
+CLIENT
+ec2-13-233-58-48.ap-south-1.compute.amazonaws.com
+172.31.9.14
+
+
+MINE
+ec2-52-66-248-69.ap-south-1.compute.amazonaws.com
+172.31.0.88
+
+
+https://github.com/Anonymous9Coder/scripts.git
+https://github.com/Anonymous9Coder/personal.git

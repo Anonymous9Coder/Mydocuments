@@ -1,0 +1,84 @@
+AWS Details
+
+#convert .pem to .ppk
+puttygen ansible.pem -O private -o ansible.ppk
+
+
+
+Server : 172.31.43.41
+Client : 172.31.32.93; 172.31.40.109
+
+#Run the below command on the server 
+yum update
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum install ansible
+
+User ID     : ansible
+Passwd      : Tday@123
+
+cd /tmp/joelj/
+ssh ec2-user@13.235.9.225 -i ansible.pem -i ansible.pem
+ssh ec2-user@13.235.9.53 -i ansible.pem -i ansible.pem
+ssh ec2-user@13.235.94.114 -i ansible.pem -i ansible.pem
+
+
+
+
+
+
+
+
+*************************************************************************
+# Add User & Change Password
+
+useradd ansible
+passwd ansible
+Tday@123
+**************************************************************************
+#Install VIM & wget 
+sudo yum install vim -y
+sudo yum install wget -y
+
+vim /etc/ssh/sshd_config
+PasswordAuthentication yes
+PermitRootLogin yes
+
+#To Restart https service
+systemctl restart sshd
+
+sudo grep ansible /etc/sudoers
+sudo systemctl restart sshd
+
+#Switch to ansible user on control and client machine 
+su ansible 
+ssh-keygen
+
+copy the ssh keys ()
+
+**************************************************************************
+
+create a file with .yml 
+ansible-playbook <>.yml
+
+
+
+passwordless authendication on AWS
+
+ssh-keygen -t rsa -N "" -f /home/ansible/.ssh/id_rsa
+
+#Make sure you change the permission to 600
+chmod 600 .ssh/my.key
+
+#Copy the public key to the instance you wish to connect to passwordless
+cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/my.key ansible@172.31.32.93 "cat >> ~/.ssh/known_hosts"
+cat ~/.ssh/id_rsa.pub | ssh -i ~/.ssh/my.key ansible@172.31.40.109 "cat >> ~/.ssh/known_hosts"
+
+
+
+172.31.32.93
+172.31.40.109
+
+cd /tmp/joelj/
+ssh ec2-user@13.235.9.225 -i ansible.pem -i ansible.pem
+ssh ec2-user@13.235.9.53 -i ansible.pem -i ansible.pem
+ssh ec2-user@13.235.94.114 -i ansible.pem -i ansible.pem

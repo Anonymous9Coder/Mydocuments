@@ -1,0 +1,40 @@
+---
+- hosts: webservers
+  become: true
+  gather_facts: no
+  tasks:
+  - name: Install git
+    command: yum install git
+	
+  - name: Download Tomcat
+    get_url: url=http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32.tar.gz dest=/home/ansible
+
+  - name: Extract the file downloaded tomcat file
+    command: tar xvf apache-tomcat-8.5.32.tar.gz
+ 
+  - name: Move the Tomcat directory to a smaller one
+    command: mv apache-tomcat-8.5.32 tomcat
+  
+  - name: Change Ownership and group of the Tomcat directory
+    file: path=/home/ansible/tomcat owner=ansible group=ansible mode=775 state=directory recurse=yes
+ 
+  - name: Start Tomcat
+    command: nohup /home/ansible/tomcat/bin/startup.sh 
+	# Execute command even after you have exited from the shell prompt
+    become: true
+    become_user: ansible
+  
+  - name:create folder
+    command: mkdir test && cd test
+ - name: clone from github
+   command: git clone git@github.com:mahesh-madipally/new-project.git
+   
+   -name: deploy
+   command: cp -rf /home/ansible/test/new-project/sample.war /var/www/html/
+   
+   
+   
+
+	
+	
+	

@@ -1,0 +1,22 @@
+$ wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm 
+$ sudo rpm -ivh epel-release-latest-7.noarch.rpm
+$ sudo yum install ansible -y 
+$ ansible --version 
+
+
+/etc/ansible/hosts 
+
+ansible webservers –m ping
+
+
+ansible webservers –m setup
+
+
+$ ansible webservers –m command - an ‘uptime’
+$ ansible webservers –m command –a ‘hostname’
+
+
+
+ansible webservers -m shell -a 'ls -l > temp.txt'\
+
+ansible webservers –m command -a ‘cat temp.txt’
